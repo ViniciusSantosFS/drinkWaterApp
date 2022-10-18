@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
+  Dimensions,
   View,
 } from 'react-native';
 
@@ -13,12 +14,15 @@ import Input from './components/Input';
 import Title from './components/Title';
 import { COLORS } from './globals/style';
 
+const { height } = Dimensions.get('window');
+const FIFTEEN_PERCENTE_SCREEN_HEIGHT = height * 0.15;
+
 export default function App() {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar style="auto" />
-        <View style={{ alignItems: 'center', marginTop: 100 }}>
+        <View style={styles.logoContainer}>
           <Logo width={200} height={200} />
         </View>
 
@@ -42,6 +46,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
+  },
+
+  logoContainer: {
+    alignItems: 'center',
+    marginTop: FIFTEEN_PERCENTE_SCREEN_HEIGHT,
   },
 
   formContainer: {
