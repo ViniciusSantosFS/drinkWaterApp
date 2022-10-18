@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { TextInput, StyleSheet, View, TextInputProps } from 'react-native';
 
-import { COLORS } from '../../globals/style';
+import { COLORS } from '~/globals/style';
 
 interface Props extends TextInputProps {
   iconName: keyof typeof MaterialCommunityIcons.glyphMap;
