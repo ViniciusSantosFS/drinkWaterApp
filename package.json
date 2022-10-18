@@ -10,7 +10,23 @@
   },
   "eslintConfig": {
     "extends": "universe/native",
-    "rules": {}
+    "rules": {},
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        },
+        "babel-plugin-root-import": {
+          "rootPathPrefix": "~",
+          "rootPathSuffix": "src"
+        }
+      }
+    }
   },
   "dependencies": {
     "expo": "~46.0.16",
@@ -25,8 +41,11 @@
     "@types/react-native": "~0.69.1",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-root-import": "^5.1.0",
     "eslint": "^8.25.0",
     "eslint-config-universe": "^11.1.0",
+    "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
     "prettier": "^2.7.1",
     "react-native-svg-transformer": "^1.0.0",
     "typescript": "^4.6.3"
