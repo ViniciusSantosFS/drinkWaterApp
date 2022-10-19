@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Home from '~/screens/Home';
-import Login from '~/screens/Login';
+import Router from './router';
 
 export default function App() {
-  return <Home />;
+  return <Router />;
 }
