@@ -8,8 +8,10 @@ import * as React from 'react';
 
 import Home from '~/screens/Home';
 import Login from '~/screens/Login';
+import RequestPermissions from '~/screens/RequestPermissions';
 
-type StackParamsList = {
+export type StackParamsList = {
+  Permissoes: undefined;
   Inicio: undefined;
   Login: undefined;
 };
@@ -21,7 +23,7 @@ export type HookNavigationProp = CompositeNavigationProp<
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 
-const loginOptios = {
+const defaultOptions = {
   headerShown: false,
 };
 
@@ -33,7 +35,12 @@ export default function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} options={loginOptios} />
+        <Stack.Screen
+          name="Permissoes"
+          component={RequestPermissions}
+          options={defaultOptions}
+        />
+        <Stack.Screen name="Login" component={Login} options={defaultOptions} />
         <Stack.Screen name="Inicio" component={Home} options={homeOptions} />
       </Stack.Navigator>
     </NavigationContainer>
