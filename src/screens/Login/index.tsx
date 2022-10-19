@@ -9,8 +9,12 @@ import { styles } from './style';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
 import Title from '~/components/Title';
+import useNavigation from '~/hooks/useNavigation';
 
 export default function Login() {
+  const { handleNavigate } = useNavigation();
+  const handleLogin = () => handleNavigate('Inicio');
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -28,7 +32,7 @@ export default function Login() {
             <Input placeholder="Password" iconName="lock-outline" />
           </View>
 
-          <Button title="Login" />
+          <Button title="Login" onPress={handleLogin} />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
