@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
 
-import { convertMsToSeconds } from '../utils/timeConverter';
 import * as Storage from './storage';
+import { convertMsToSeconds } from '../utils/timeConverter';
 
 const schedulePushNotification = async () => {
   const scheduleTime = await Storage.getScheduleTime();
@@ -36,7 +36,7 @@ const updatePushNotificationTime = async (): Promise<string> => {
 };
 
 const requestNotificationsPermissions = async () => {
-  await Notifications.requestPermissionsAsync({
+  return await Notifications.requestPermissionsAsync({
     ios: {
       allowAlert: true,
       allowBadge: true,

@@ -1,23 +1,24 @@
 import React from 'react';
 import { Platform, ActionSheetIOS, ToastAndroid, Linking } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import Button from '~/components/Button';
 import useNavigation from '~/hooks/useNavigation';
-import * as Notifications from '~/services/notification';
+import { askUserForNotificationPermissions } from '~/redux/reducers/notification';
+import { AppDispatch } from '~/redux/store';
 
 export default function AskPermissionsButton() {
   const { handleNavigate } = useNavigation();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleAcceptPermissions = async () => {
-    if (Platform.OS === 'ios') {
-      await Notifications.requestNotificationsPermissions();
-    }
+    const granted = await dispatch(
+      askUserForNotificationPermissions()
+    ).unwrap();
 
-    const status = await Notifications.getPermissionsStatus();
+    if (!granted) return notifyAboutPermissions();
 
-    if (!status.granted) return notifyAboutPermissions();
-
-    handleNavigate('Login');
+    return handleNavigate('Login');
   };
 
   const notifyAboutPermissions = () => {

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import Greetings from './components/Greetings';
 import * as Notifications from '../../services/notification';
 import * as Storage from '../../services/storage';
-import Greetings from './components/Greetings';
 
 import IconButton from '~/components/IconButton';
 import Title from '~/components/Title';
