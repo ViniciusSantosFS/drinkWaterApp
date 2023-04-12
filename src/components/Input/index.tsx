@@ -1,31 +1,37 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
-import { TextInput, StyleSheet, View, TextInputProps } from 'react-native';
+import { TextInput, View, TextInputProps } from 'react-native';
+import styled from 'styled-components/native';
 
 import { COLORS } from '~/globals/style';
 
 interface Props extends TextInputProps {
   iconName: keyof typeof MaterialCommunityIcons.glyphMap;
+  hasError: boolean;
 }
 
-const Input = ({ iconName, ...rest }: Props) => (
-  <View style={styles.container}>
-    <MaterialCommunityIcons name={iconName} size={24} color={COLORS.gray} />
-    <TextInput style={styles.input} {...rest} />
-  </View>
+const Input = ({ iconName, hasError, ...rest }: Props) => (
+  <Container>
+    <MaterialCommunityIcons
+      name={iconName}
+      size={24}
+      color={hasError ? COLORS.error : COLORS.gray}
+    />
+    <TextField {...rest} error={hasError} />
+  </Container>
 );
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+const Container = styled(View)`
+  flex-direction: row;
+  align-items: center;
+`;
 
-  input: {
-    width: '100%',
-    borderBottomWidth: 1,
-    padding: 20,
-  },
-});
+const TextField = styled(TextInput)`
+  width: 100%;
+  border-bottom-width: 1px;
+  padding: 20px;
+  border-color: ${({ error }: { error: boolean }) =>
+    error && `${COLORS.error}`};
+`;
 
 export default Input;

@@ -3,4 +3,5 @@ export const COLORS = {
   bluePrimary: '#0165FF',
   blueSecondary: '#172B4D',
   gray: '#7A869A',
+  error: '#FF0000',
 };
