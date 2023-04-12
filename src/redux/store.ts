@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import devToolsEnhancer from 'remote-redux-devtools';
 
 import notificationReducer from './reducers/notification';
 
@@ -6,8 +7,8 @@ export const store = configureStore({
   reducer: {
     notificationReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: true,
+  enhancers: [devToolsEnhancer({ realtime: true, port: 8000 })],
 });
 
 export type RootState = ReturnType<typeof store.getState>;

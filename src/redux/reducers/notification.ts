@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import * as Notifications from '~/services/notification';
+import Notifications from '~/services/notifications';
 
 const askUserForNotificationPermissions = createAsyncThunk(
   'notification/askPermissions',
   async () => {
-    const { granted } = await Notifications.requestNotificationsPermissions();
+    const granted = await Notifications.requestForPermissions();
     return granted;
   }
 );
