@@ -16,11 +16,6 @@ export const styles = StyleSheet.create({
     marginTop: FIFTEEN_PERCENTE_SCREEN_HEIGHT,
   },
 
-  formContainer: {
-    marginVertical: 40,
-    marginRight: 20,
-  },
-
   contentContainer: {
     margin: 20,
   },
