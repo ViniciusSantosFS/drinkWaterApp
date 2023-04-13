@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import React, { useRef } from 'react';
 import { TextInput, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 
 import { validationSchema } from './validationSchema';
@@ -8,13 +9,19 @@ import { validationSchema } from './validationSchema';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
 import useNavigation from '~/hooks/useNavigation';
+import { authenticateUserWithBiometric } from '~/redux/reducers/authenticator';
+import { AppDispatch } from '~/redux/store';
 
 export default function Form() {
+  const initialFormikValues = { email: '', password: '' };
   const { handleNavigate } = useNavigation();
+  const dispatch = useDispatch<AppDispatch>();
   const passwordRef = useRef<TextInput>();
 
-  const handleLogin = () => handleNavigate('Inicio');
-  const initialFormikValues = { email: '', password: '' };
+  const handleLogin = async () => {
+    await dispatch(authenticateUserWithBiometric(false));
+    // return handleNavigate('Inicio');
+  };
 
   const handleEmailOnSubmitEditing = () => {
     return passwordRef.current.focus();
@@ -59,7 +66,7 @@ export default function Form() {
               onBlur={handleBlur('password')}
             />
           </Container>
-          <Button title="Login" onPress={() => handleSubmit()} />
+          <Button title="Entrar" onPress={() => handleSubmit()} />
         </>
       )}
     </Formik>
@@ -67,5 +74,5 @@ export default function Form() {
 }
 
 const Container = styled(View)`
-  margin: 40px 20px 40px 0px;
+  margin: 40px 26px 40px 0px;
 `;
