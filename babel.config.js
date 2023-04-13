@@ -10,6 +10,10 @@ module.exports = function (api) {
           rootPathSuffix: 'src',
         },
       ],
+      [
+        'module:react-native-dotenv',
+        { safe: true, moduleName: '@env', path: '.env' },
+      ],
     ],
   };
 };
