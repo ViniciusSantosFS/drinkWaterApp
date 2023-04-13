@@ -1,5 +1,5 @@
 export interface INotifications {
   requestForPermissions: () => Promise<boolean>;
-  addScheduleTimeToPushNotifications: () => Promise<void>;
+  addScheduleTimeToPushNotifications: (time: number) => Promise<void>;
   cancelAllScheduledNotifications: () => Promise<void>;
 }

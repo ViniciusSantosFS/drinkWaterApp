@@ -6,7 +6,6 @@ import {
 
 import { INotifications } from './types';
 import { convertMsToSeconds } from '../../utils/timeConverter';
-import * as Storage from '../storage';
 
 export class ExpoNotifications implements INotifications {
   async requestForPermissions() {
@@ -18,13 +17,11 @@ export class ExpoNotifications implements INotifications {
         allowAnnouncements: true,
       },
     });
-
     return result.granted;
   }
 
-  async addScheduleTimeToPushNotifications() {
-    const scheduleTime = await Storage.getScheduleTime();
-    const seconds = convertMsToSeconds(scheduleTime);
+  async addScheduleTimeToPushNotifications(milisseconds: number) {
+    const seconds = convertMsToSeconds(milisseconds);
 
     await scheduleNotificationAsync({
       content: {

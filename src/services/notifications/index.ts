@@ -12,8 +12,10 @@ class Notifications {
     return this.notificationDriver.requestForPermissions();
   }
 
-  addScheduleTimeToPushNotifications() {
-    return this.notificationDriver.addScheduleTimeToPushNotifications();
+  addScheduleTimeToPushNotifications(milisseconds: number) {
+    return this.notificationDriver.addScheduleTimeToPushNotifications(
+      milisseconds
+    );
   }
 
   cancelAllScheduledNotifications() {
